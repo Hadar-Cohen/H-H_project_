@@ -1,6 +1,6 @@
-﻿function getSeriesSuccessCB(seriesNames) {
+﻿function getSeriesSuccessCB(series) {
 
-    for (const s of seriesNames) {
+    for (const s of series) {
         str += "<option value=" + s.Id + ">" + s.Name + "</option>";
     }
     str += "</select>";
@@ -9,21 +9,24 @@
 function getSeriesErrorCB(err) {
     alert("Error -cant get the Series names");
 }
-selectedText = "";
+episodesList = "";
 function showEpisodes(series) {
-     selectedText = series.options[series.selectedIndex].innerHTML;
+    var selectedText = series.options[series.selectedIndex].innerHTML;
+    selectedVal = series.options[series.selectedIndex].value;
+    //checkClub(selectedVal);
     //initChat(selectedText);
-    episodesList = `  <div class="wrapper">
-                <a id="`+ selectedText+`"onclick="addToClub(this.id)" href="#">Join the fan club of!</a>
-            </div> `;
+    //episodesList = `  <div class="wrapper">
+    //            <a id="`+ selectedVal+`"onclick="addToClub(this.id)" href="#">Join the fan club of!</a>
+    //        </div> `;
 
     let api = "../api/Totals?seriesName=" + selectedText + "&userId=" + userId;
     ajaxCall("GET", api, "", getEpisodesSuccessCB, Error);
 }
 
 function getEpisodesSuccessCB(episodes) {
+    checkClub(selectedVal);
     console.log(episodes);
-    //episodesList = "";
+    episodesList = "";
 
     episodes.forEach(ep => {
         episodesList += drawEpisodeCard(ep);
@@ -62,8 +65,36 @@ function deleteEpisodesSuccess()
     alert('deleted');
 }
 
+function checkClub(seriesId) {
+    let api = "../api/ClubMembers?seriesId=" + seriesId + "&userId=" + userId;
+    ajaxCall("GET", api, "", getClubmMSuccessCB, Error);
+}
+function addToClub(seriesId) {
+    let api = "../api/ClubMembers?seriesId=" + seriesId + "&userId=" + userId;
+    ajaxCall("POST", api, "", postClubmMSuccessCB, Error);
+}
+function getClubmMSuccessCB(ma) {
+    console.log(ma);
+    if (ma.UserId == 0) {
+        str = `  <div class="wrapper">
+              <a id="`+ selectedVal + `" onclick="addToClub(this.id)" href="#">Join the fan club of!</a>
+           </div> `;
+    }
+    else {
+        str = `  <div class="wrapper">
+              <a id="`+ selectedVal + `href="#">to the chat</a>
+           </div> `;
+    }
+    $("#episodesView").append(str);
+}
 
-function addToClub(seriesName) {
-    let api = "../api/ClubMembers?seriesName=" + selectedText + "&userId=" + userId;
-    ajaxCall("GET", api, "", getEpisodesSuccessCB, Error);
+
+function postClubmMSuccessCB(ma) {
+    alert("welcome to the gruop :)");
+
+    str = `  <div class="wrapper">
+              <a id="`+ selectedVal + `href="#">to the forum</a>
+           </div> `;
+    $("#episodesView").html(episodesList);
+    $("#episodesView").append(str);
 }

@@ -165,7 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CllubMember.cs" />
+    <Compile Include="Models\ClubMember.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DAL\ClubMemderDB.cs" />
     <Compile Include="Models\DAL\CommentDBServices.cs" />

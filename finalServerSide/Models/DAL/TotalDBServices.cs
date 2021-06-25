@@ -150,9 +150,10 @@ namespace Ex2.Models.DAL
                 
                 // get a reader
                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-                Series s = new Series();
+               
                 while (dr.Read())
                 {   // Read till the end of the data into a row
+                    Series s = new Series();
                     s.Id = Convert.ToInt32(dr["id"]);
                     s.Name= (string)dr["name"];
                     seriesNames.Add(s);
