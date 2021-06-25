@@ -36,7 +36,7 @@ namespace Ex2.Models
             return ds.Insert(this);
         }
 
-        public List<string> GetSeries(int userId)
+        public List<Series> GetSeries(int userId)
         {
             TotalDBServices tDB = new TotalDBServices();
             return tDB.GetSeries(userId);

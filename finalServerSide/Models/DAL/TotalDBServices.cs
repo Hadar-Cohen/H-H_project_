@@ -133,16 +133,16 @@ namespace Ex2.Models.DAL
         //---------------------------------------------------------------------------------
         // Read from the DB into a list all the series names that the user prefered- dataReader
         //---------------------------------------------------------------------------------
-        public List<string> GetSeries(int userId)
+        public List<Series> GetSeries(int userId)
         {
             SqlConnection con = null;
-            List<string> seriesNames = new List<string>();
+            List<Series> seriesNames = new List<Series>();
 
             try
             {
                 con = connect("DBConnectionString"); // create a connection to the database using the connection String defined in the web config file
 
-                String selectSTR = "Select distinct S.name From Preferences_2021 as P inner join User_2021 as U on U.id=P.userId ";
+                String selectSTR = "Select distinct S.name ,S.id From Preferences_2021 as P inner join User_2021 as U on U.id=P.userId ";
                 selectSTR += "inner join Series_2021 as S on P.seriesId= S.id WHERE U.id = " + userId;
                 SqlCommand cmd = new SqlCommand(selectSTR, con);
                 
@@ -150,10 +150,11 @@ namespace Ex2.Models.DAL
                 
                 // get a reader
                 SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // CommandBehavior.CloseConnection: the connection will be closed after reading has reached the end
-
+                Series s = new Series();
                 while (dr.Read())
                 {   // Read till the end of the data into a row
-                    string s= (string)dr["name"];
+                    s.Id = Convert.ToInt32(dr["id"]);
+                    s.Name= (string)dr["name"];
                     seriesNames.Add(s);
                 }
 

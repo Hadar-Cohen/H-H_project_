@@ -11,7 +11,7 @@ namespace Ex2.Controllers
     public class TotalsController : ApiController
     {
         // GET api/<controller>
-        public List<string> Get(int userId) //Get series of user (according to his preferences)
+        public List<Series> Get(int userId) //Get series of user (according to his preferences)
         {
             Total total = new Total();
             return total.GetSeries(userId);

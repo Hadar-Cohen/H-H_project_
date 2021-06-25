@@ -27,6 +27,34 @@
 
     <link href="myStyle.css" rel="stylesheet" />
     <link href="navbarStyle.css" rel="stylesheet" />
+    <style>
+      
+        .wrapper {
+            color:white;
+            position: fixed;
+            top: 25%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+        }
+
+            .wrapper > a {
+                display: block;
+                font-size: 24px;
+                font-family: sans-serif;
+                text-decoration: none;
+                color: white;
+                border-top: 2px solid #333;
+                border-bottom: 2px solid #333;
+                padding: 10px;
+                letter-spacing: 2px;
+                transition: all .25s;
+            }
+
+                .wrapper > a:hover {
+                    letter-spacing: 15px;
+                }
+
+    </style>
     <script>
         $(document).ready(function () {
             imagePath = "https://image.tmdb.org/t/p/w500/";
@@ -91,6 +119,7 @@
     </div>
     <table id="episodesView"></table>
 
+   
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
