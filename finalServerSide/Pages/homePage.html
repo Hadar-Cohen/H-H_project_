@@ -76,6 +76,7 @@
             console.log(err);
         }
         function drawtopRated(TVShow) {
+            console.log(TVShow);
             let stars = 5;
             let popularity = TVShow.popularity;
             switch (true) {
@@ -94,9 +95,9 @@
             }
             str = "";
             str = `<div class='recommand-card' onclick = 'showAbout(topRatedArr[` + r + `])'>
-                       <img src='` + imagePath + TVShow.poster_path + `'>
-                       <h4><b>` + TVShow.name + `</b></h4>
-                       <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
+                           <img src='` + imagePath + TVShow.poster_path + `'>
+                           <h4><b>` + TVShow.name + `</b></h4>
+                           <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
             return str;
         }
 
@@ -111,7 +112,8 @@
         r = 0; //index in result array that contain all the tv shows in the TMDB services
         mostViewedArr = [];//local arrey to render and play onclick function
 
-        function getSuccessMostViewed(topV) {           
+        function getSuccessMostViewed(topV) {
+            mostViewedArr = topV;
             mostViewedList = "<div style= 'display:flex; justify-content:center;' class='row'>";
             while (r < 8) {
                 mostViewedList += drawMostViewed(topV[r]);
@@ -127,6 +129,7 @@
         }
 
         function drawMostViewed(TVShow) {
+            console.log(TVShow);
             let stars = 5;
             let popularity = TVShow.Popularity;
             switch (true) {
@@ -145,9 +148,9 @@
             }
             str = "";
             str = `<div class='recommand-card' onclick = 'showAboutFronOurWeb(mostViewedArr[` + r + `])'>
-                       <img src='`+ TVShow.Poster_path + `'>
-                       <h4><b>` + TVShow.Name + `</b></h4>
-                       <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
+                           <img src='`+ TVShow.Poster_path + `'>
+                           <h4><b>` + TVShow.Name + `</b></h4>
+                           <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
             return str;
         }
 
@@ -160,6 +163,7 @@
         mostViewedEpisodesArr = [];//local arrey to render and play onclick function
 
         function getSuccessMostViewedEpisodes(topV) {
+            mostViewedEpisodesArr = topV;
             mostViewedEpisodesList = "<div style= 'display:flex; justify-content:center;' class='row'>";
 
             while (r < 8) {
@@ -178,9 +182,9 @@
         function drawMostViewedEpisodes(TVShow) {
             str = "";
             str = `<div class='recommand-card'>
-                       <img src='`+ TVShow.ImageURL + `'>
-                       <h5><b>` + TVShow.SeriesName + "</b><br>Season" + TVShow.SeasonNum + `</h5>
-                       <h5>` + TVShow.EpisodeName + `</h5></div>`
+                           <img src='`+ TVShow.ImageURL + `'>
+                           <h5><b>` + TVShow.SeriesName + "</b><br>Season" + TVShow.SeasonNum + `</h5>
+                           <h5>` + TVShow.EpisodeName + `</h5></div>`
             return str;
         }
 
@@ -211,6 +215,7 @@
             console.log(err);
         }
         function drawGenres(genre) {
+            console.log(genre);
             str = "";
             str += "<option value=" + genre.id + ">" + genre.name + "</option>";
             // str = `<button id=` + genre.id +` class="button button5">`+genre.name+`</button>`
@@ -259,9 +264,9 @@
             }
             str = "";
             str = `<div class='recommand-card' onclick = 'showAbout(seriesAccoGenreArr[` + r + `])'>
-                       <img src='` + imagePath + TVShow.poster_path + `'>
-                       <h4><b>` + TVShow.name + `</b></h4>
-                       <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
+                           <img src='` + imagePath + TVShow.poster_path + `'>
+                           <h4><b>` + TVShow.name + `</b></h4>
+                           <img class='starsPopularity' src= '../images/` + stars + `stars.png'/></div>`
 
             return str;
         }
@@ -338,7 +343,6 @@
                 <a class="navbar-brand" href="#">The Movie H & H</a>
             </div>
             <ul class="nav navbar-nav justify-content-between">
-                <li><div id="profile"></div></li>
                 <li><div id="userName"></div></li>
                 <li><a class="toblack" href="homePage.html"> Home</a></li>
                 <li><a class="toblack" href="insert_signup.html">Search</a></li>
