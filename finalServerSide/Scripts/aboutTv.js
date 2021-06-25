@@ -540,25 +540,37 @@ function getSocialMedia() {
 function getSocialSuccessCB(socialLinks) {
 
     console.log(socialLinks);
-    var link = "https://www.facebook.com/"
+    str = "<ul>";
     if (socialLinks.facebook_id != null) {
-        faceLink = link + socialLinks.facebook_id;
+        //https://www.facebook.com/NetflixElite
+        str += ` <li class="facebook"><a href="https://www.facebook.com/` + socialLinks.facebook_id + `">
+                             <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                           <div class="slider">
+                                <p>facebook</p>
+                            </div>
+                        </li>`;
     }
-
+    //https://www.instagram.com/elitenetflix/
     if (socialLinks.instagram_id != null) {
-        instaLink = link + socialLinks.instagram_id;
+        str += `<li class="instagram"><a href="https://www.instagram.com/` + socialLinks.instagram_id +`/">
+                            <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <div class="slider">
+                                <p>instagram</p>
+                            </div>
+                        </li>`;
+    }
+    //https://twitter.com/greysabc
+    if (socialLinks.twitter_id != null) {
+        str += ` <li class="twitter"><a href="https://twitter.com/` + socialLinks.twitter_id + `">
+                            <i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <div class="slider">
+                                 <p>twitter</p>
+                            </div>
+                        </li>`;
     }
 
-    if (socialLinks.twitter_id != null) {
-        twitterLink = link + socialLinks.twitter_id;
-    }
-        
-    str =`<ul>
-            <li><a href="faceLink"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-            <li><a href="twitterLink"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-            <li><a href="instaLink"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-        </ul>`
-    $('#socialMediaLinks').html(str);
+    str += "</ul>";
+    $('#mediaLinks').html(str);
 }
 
 function getSocialErrorCB(err) {
