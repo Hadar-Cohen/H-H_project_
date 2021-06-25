@@ -80,6 +80,7 @@ function getClubmMSuccessCB(ma) {
               <a id="`+ selectedVal + `" onclick="addToClub(this.id)" href="#">Join the fan club of!</a>
            </div> `;
     }
+
     else {
         str = `  <div class="wrapper">
               <a id="`+ selectedVal + `" onclick="commentP()">to the chat</a>
