@@ -82,7 +82,7 @@ function getClubmMSuccessCB(ma) {
     }
     else {
         str = `  <div class="wrapper">
-              <a id="`+ selectedVal + `href="#">to the chat</a>
+              <a id="`+ selectedVal + `" onclick="commentP()">to the chat</a>
            </div> `;
     }
     $("#episodesView").append(str);
@@ -97,4 +97,7 @@ function postClubmMSuccessCB(ma) {
            </div> `;
     $("#episodesView").html(episodesList);
     $("#episodesView").append(str);
+}
+function commentP() {
+    window.location.replace("comment.html");
 }
